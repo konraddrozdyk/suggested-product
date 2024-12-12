@@ -14,6 +14,6 @@ import Layout from '../layouts/Layout.astro';
 <script>
 const title = document.querySelector<HTMLHeadingElement>(".hello-world")!;
 fetch("http://localhost:5191/api/v1/Hello")
-.then(result => result.text())
+.then(result => result.text()) 
 .then(text => title.textContent = text)
 </script>
