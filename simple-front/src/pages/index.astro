@@ -6,8 +6,48 @@ const trialData = await getEntry('products', 'trial');
 ---
 
 <Layout>
-<h2 class = "hello-world">Have not fetched</h2>
-<p> {trialData?.data.name} </p>
+	<div class="overflow-x-auto">
+		<table class="table table-zebra w-full">
+		  <!-- Table Head -->
+		  <thead>
+			<tr>
+			  <th>Product</th>
+			  <th>Price</th>
+			  <th>Description</th>
+			  <th>Image</th>
+			  <th>Get product</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<!-- Table Row -->
+			<tr>
+			  <td>{trialData?.data.name}</td>
+			  <td>{trialData?.data.price}</td>
+			  <td>{trialData?.data.description}</td>
+			  <td>
+				<div class="flex justify-center">
+				  <img
+					src={trialData?.data.image}
+					alt="Product Image"
+					class="h-20 w-20 object-cover rounded-md border"
+				  />
+				</div>
+			  </td>
+			  <td><button class ="btn btn-success">GET</button></td>
+			</tr>
+		  </tbody>
+		  <!-- Optional Table Footer -->
+		  <tfoot>
+			<tr>
+			  <th>Product</th>
+			  <th>Price</th>
+			  <th>Description</th>
+			  <th>Image</th>
+			</tr>
+		  </tfoot>
+		</table>
+	  </div>
+	  
 </Layout>
 
 <script>
