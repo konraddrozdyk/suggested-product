@@ -12,7 +12,7 @@ const products = defineCollection({
     name: z.string(),
     price: z.string(),
     description: z.string(),
-    image: z.string(),
+    image: z.string().url(),
     category: z.string(),
   }),
 });

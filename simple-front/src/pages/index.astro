@@ -1,58 +1,57 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import { getCollection, getEntry } from 'astro:content';
 
-const trialData = await getEntry('products', 'trial');
+// Fetch all products
+const allProducts = await getCollection('products');
 ---
 
 <Layout>
-	<div class="overflow-x-auto">
-		<table class="table table-zebra w-full">
-		  <!-- Table Head -->
-		  <thead>
-			<tr>
-			  <th>Product</th>
-			  <th>Price</th>
-			  <th>Description</th>
-			  <th>Image</th>
-			  <th>Get product</th>
-			</tr>
-		  </thead>
-		  <tbody>
-			<!-- Table Row -->
-			<tr>
-			  <td>{trialData?.data.name}</td>
-			  <td>{trialData?.data.price}</td>
-			  <td>{trialData?.data.description}</td>
-			  <td>
-				<div class="flex justify-center">
-				  <img
-					src={trialData?.data.image}
-					alt="Product Image"
-					class="h-20 w-20 object-cover rounded-md border"
-				  />
-				</div>
-			  </td>
-			  <td><button class ="btn btn-success">GET</button></td>
-			</tr>
-		  </tbody>
-		  <!-- Optional Table Footer -->
-		  <tfoot>
-			<tr>
-			  <th>Product</th>
-			  <th>Price</th>
-			  <th>Description</th>
-			  <th>Image</th>
-			</tr>
-		  </tfoot>
-		</table>
-	  </div>
-	  
+  <div class="overflow-x-auto p-4">
+    <table class="table table-zebra w-full">
+      <!-- Table Head -->
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th>Image</th>
+          <th>Get Product</th>
+        </tr>
+      </thead>
+      <tbody>
+        {allProducts.map((product) => (
+          <tr>
+            <td>{product.data.name}</td>
+            <td>{product.data.price}</td>
+            <td>{product.data.description}</td>
+            <td>
+              <div class="flex justify-center">
+                <img
+                  src={product.data.image}
+                  alt={`Image of ${product.data.name}`}
+                  class="h-20 w-20 object-cover rounded-md border"
+                />
+              </div>
+            </td>
+            <td>
+              <button class="btn btn-success">
+                GET
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+      <!-- Table Footer -->
+      <tfoot>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th>Image</th>
+          <th>Get Product</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
 </Layout>
-
-<script>
-const title = document.querySelector<HTMLHeadingElement>(".hello-world")!;
-fetch("http://localhost:5191/api/v1/Hello")
-.then(result => result.text()) 	
-.then(text => title.textContent = text)
-</script>
