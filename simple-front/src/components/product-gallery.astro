@@ -4,6 +4,8 @@ interface Props{
 
 }
 import { getCollection } from 'astro:content';
+import GalleyCard from './product-gallery/gallery-card.astro';
+
 const allProducts = await getCollection('products');
 
 const {title} = Astro.props;

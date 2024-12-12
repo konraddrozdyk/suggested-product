@@ -1,5 +1,5 @@
 ---
-interface Props{
+export interface Props{
     product: {
         name: string;
         price: number;
@@ -11,6 +11,6 @@ interface Props{
 const {product} = Astro.props;
 ---
 
-<article>
+<article class = "mg-2 p-2">
     <h3>{product.name}</h3>  
 </article>
