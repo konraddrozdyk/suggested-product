@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Products.Api.Controllers;
 
-[ApiController]
+[ApiController] 
 [Route("api/v1/[controller]")]
 public class HelloController : ControllerBase
 {
