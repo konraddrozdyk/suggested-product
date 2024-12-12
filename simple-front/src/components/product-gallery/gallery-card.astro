@@ -2,7 +2,7 @@
 export interface Props{
     product: {
         name: string;
-        price: number;
+        price: string;
         description: string;
         image: string;
     }
@@ -11,6 +11,17 @@ export interface Props{
 const {product} = Astro.props;
 ---
 
-<article class = "mg-2 p-2">
-    <h3>{product.name}</h3>  
-</article>
+<div class="card bg-base-100 w-96 shadow-xl">
+    <figure>
+      <img class = "w-full h-60 object-cover"
+        src={product.image}
+      alt="Animals" />
+    </figure>
+    <div class="card-body">
+      <p>{product.description}</p>
+      <p>{product.price}</p>
+      <div class="card-actions justify-end">
+        <button class="btn btn-primary">Buy Now</button>
+      </div>
+    </div>
+  </div>
