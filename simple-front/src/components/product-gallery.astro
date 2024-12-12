@@ -3,13 +3,55 @@ interface Props{
     title: string,
 
 }
+import { getCollection } from 'astro:content';
+const allProducts = await getCollection('products');
 
 const {title} = Astro.props;
 ---
 
 
-<section>
-    <h2>
-        {title}
-    </h2>
-</section>
+<table class="table table-zebra w-full">
+    <!-- Table Head -->
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Get Product</th>
+      </tr>
+    </thead>
+    <tbody>
+      {allProducts.map((product) => (
+        <tr>
+          <td>{product.data.name}</td>
+          <td>{product.data.price}</td>
+          <td>{product.data.description}</td>
+          <td>
+            <div class="flex justify-center">
+              <img
+                src={product.data.image}
+                alt={`Image of ${product.data.name}`}
+                class="h-20 w-20 object-cover rounded-md border"
+              />
+            </div>
+          </td>
+          <td>
+            <button class="btn btn-success">
+              GET
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+    <!-- Table Footer -->
+    <tfoot>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Get Product</th>
+      </tr>
+    </tfoot>
+  </table>

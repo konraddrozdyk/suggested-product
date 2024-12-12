@@ -1,0 +1,16 @@
+---
+interface Props{
+    product: {
+        name: string;
+        price: number;
+        description: string;
+        image: string;
+    }
+}
+
+const {product} = Astro.props;
+---
+
+<article>
+    <h3>{product.name}</h3>  
+</article>
